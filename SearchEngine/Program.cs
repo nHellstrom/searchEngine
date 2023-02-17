@@ -1,7 +1,10 @@
 ﻿using SearchEngine.Models;
 
+
+
 List<string> files = new() {"doc1","doc2","doc3", "doc4"};
-Searcher searcher = new(files);
+// Searcher searcher = new(files);
+Searcher searcher = new();
 
 Console.WriteLine("What word would you like to search for?");
 

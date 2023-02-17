@@ -2,6 +2,8 @@ namespace SearchEngine.Models;
 
 public class Searcher {
     Dictionary<string, List<string>> searchIndex = new();
+    string basePath = System.AppContext.BaseDirectory;
+    char separator = Path.DirectorySeparatorChar;
 
     public Searcher(params string[] documents) 
     {
@@ -19,11 +21,21 @@ public class Searcher {
         }
     }
 
+    public Searcher() 
+    {
+        string[] documents = Directory.GetFiles($"{basePath}{separator}Data", "*.txt");
+        
+        foreach (string document in documents) 
+        {
+            string documentName = Path.GetFileNameWithoutExtension(document);
+            this.searchIndex = Index(documentName, searchIndex);
+        }
+    }
+
     public string ReadDocument(string documentName)
     {
-        string basePath = System.AppContext.BaseDirectory;
-        char separator = Path.DirectorySeparatorChar;
-        return System.IO.File.ReadAllText($"{basePath}{separator}Data{separator}{documentName}.txt");
+        string path = $"{basePath}{separator}Data{separator}{documentName}.txt";
+        return System.IO.File.ReadAllText(path);
     }
 
     public string[] Tokenize(string inputString) 
@@ -100,7 +112,7 @@ public class Searcher {
 
     public string[] Search(string searchTerm)
     {
-        if (searchIndex.TryGetValue(searchTerm, out List<string>? result))
+        if (searchIndex.TryGetValue(searchTerm.ToLower(), out List<string>? result))
         {
             return SortResult(result).ToArray();
             
