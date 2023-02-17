@@ -21,6 +21,16 @@ public class Searcher {
         }
     }
 
+    public Searcher(string path) 
+    {
+        string[] files = System.IO.File.ReadLines(path).ToArray();
+
+        foreach (string document in files) 
+        {
+            this.searchIndex = Index(document, searchIndex);
+        }
+    }
+
     public Searcher() 
     {
         string[] documents = Directory.GetFiles($"{basePath}{separator}Data", "*.txt");
@@ -74,6 +84,13 @@ public class Searcher {
         }
 
         return index;
+    }
+
+    public float CalculateTermFrequency(List<string> document, string query)
+    {
+        int wordCount = document.Count;
+        int termCount = document.Count(x => x.Equals(query.ToLower()));
+        return termCount/wordCount;
     }
 
     public List<string> SortResult(List<string> toSort)
