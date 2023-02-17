@@ -11,6 +11,14 @@ public class Searcher {
         }
     }
 
+    public Searcher(List<string> documents) 
+    {
+        foreach (string document in documents) 
+        {
+            this.searchIndex = Index(document, searchIndex);
+        }
+    }
+
     public string ReadDocument(string documentName)
     {
         string basePath = System.AppContext.BaseDirectory;
@@ -56,12 +64,49 @@ public class Searcher {
         return index;
     }
 
+    public List<string> SortResult(List<string> toSort)
+    {
+        string[] distinctHits = toSort.Distinct().ToArray();
+
+        List<(string term, int weight)> holder = new();
+
+        foreach (string hit in distinctHits)
+        {
+            int weight = toSort.Count(x => x.Equals(hit));
+            holder.Add((hit,weight));
+        }
+        holder.Sort(
+            delegate((string term, int weight) a, (string term, int weight) b)
+            {
+                if (a.weight > b.weight)
+                {
+                    return -1;
+                }
+                if (b.weight > a.weight)
+                {
+                    return 1;
+                }
+                return 0;
+            });
+        
+        List<string> output = new();
+        foreach (var result in holder)
+        {
+            output.Add(result.term);
+        }
+
+        return output;
+    }
+
     public string[] Search(string searchTerm)
     {
         if (searchIndex.TryGetValue(searchTerm, out List<string>? result))
         {
-            return result.ToArray();
+            return SortResult(result).ToArray();
+            
         }
+
+
         return Array.Empty<string>();
     }
 
