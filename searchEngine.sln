@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchEngine", "SearchEngine\SearchEngine.csproj", "{EC1E131A-2D11-49E8-BCA1-5D02085D8B4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchEngine.Tests", "SearchEngine.Tests\SearchEngine.Tests.csproj", "{3B188E87-F03A-49E0-97EC-8F7E872EA3B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC1E131A-2D11-49E8-BCA1-5D02085D8B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC1E131A-2D11-49E8-BCA1-5D02085D8B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC1E131A-2D11-49E8-BCA1-5D02085D8B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC1E131A-2D11-49E8-BCA1-5D02085D8B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B188E87-F03A-49E0-97EC-8F7E872EA3B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B188E87-F03A-49E0-97EC-8F7E872EA3B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B188E87-F03A-49E0-97EC-8F7E872EA3B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B188E87-F03A-49E0-97EC-8F7E872EA3B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
