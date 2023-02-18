@@ -7,27 +7,26 @@ Console.WriteLine(@"(only Windows syntax has been tested)");
 Console.WriteLine(@"If you'd like to use a pre-made set of documents, simply leave the input empty.");
 
 
-// string? inputPath = Console.ReadLine();
+string? inputPath = Console.ReadLine();
 
 Searcher searcher = new();
 
-// if (!string.IsNullOrWhiteSpace(inputPath))
-// {
-//     try {
-//         searcher = new Searcher(inputPath!.Trim().Replace("\"",""));
-//     }
-//     catch(FileNotFoundException)
-//     {
-//         Console.WriteLine("Seems like you entered a bad file path!");
-//         Console.WriteLine("Reverted to the default data files.");
-//         searcher = new Searcher();
-//     }
-// }
+if (!string.IsNullOrWhiteSpace(inputPath))
+{
+    try {
+        searcher = new Searcher(inputPath!.Trim().Replace("\"",""));
+    }
+    catch(FileNotFoundException)
+    {
+        Console.WriteLine("Seems like you entered a bad file path!");
+        Console.WriteLine("Reverted to the default data files.");
+        searcher = new Searcher();
+    }
+}
 
 Console.WriteLine("What word would you like to search for?");
 
-// string? input = Console.ReadLine() ?? "";
-string input = "fox";
+string? input = Console.ReadLine() ?? "";
 
 string[] result = searcher.Search(input);
 Console.WriteLine($"The query '{input}' was found in these documents: ");
